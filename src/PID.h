@@ -1,18 +1,9 @@
 #ifndef PID_H
 #define PID_H
+#include <vector>
 
 class PID {
  public:
-  /**
-   * Constructor
-   */
-  PID();
-
-  /**
-   * Destructor.
-   */
-  virtual ~PID();
-
   /**
    * Initialize PID.
    * @param (Kp_, Ki_, Kd_) The initial PID coefficients
@@ -31,20 +22,23 @@ class PID {
    */
   double TotalError();
 
+  void AddToParameterAtIndex(int index, double amount);
  private:
-  /**
-   * PID Errors
-   */
-  double p_error;
-  double i_error;
-  double d_error;
-
-  /**
-   * PID Coefficients
-   */ 
   double Kp;
   double Ki;
   double Kd;
+  double p_err;
+  double i_err;
+  double d_err;
+
+  std::vector<double> dp;
+  int step, param_index;
+  int n_ajust;
+  int n_eval;
+  double tolerance;
+  double total_err, best_err;
+  bool set_twiddle;
+  bool tried_adding, tried_subtracting;
 };
 
 #endif  // PID_H
