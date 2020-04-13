@@ -2,6 +2,19 @@
 Self-Driving Car Engineer Nanodegree Program
 
 ---
+Main goal of the project is to implement PID control for steering vehicle on the track in simulation.
+
+PID control is the basic technic in automatic control of some parameters. The main idea of the method is that we have 3 parameters which are affect out output parameter (here is steering angle):
+**P** - proportional, linear relation with the parameter error, **P** tryes to reduce error as fast as possible,so it is usually drive to overshooting and oscilation.  
+**I** - integral, is related to the average value of the parameter error, **I** tryes to reduce bias of the parameter, if it is. **D** - differential, linear relation with the rate of change of the parameter error, **D** tryes to prevent overshooting by reducing correction value of the parameter if error is small enough.
+
+Tuning final hyperparameters. First of all I tune them by hands because car wasn't able to go through the track. I stated by increasing the P till the oscilations and the I started adding D component to reduce occilations. So then Car can go atleast one lap I turned on the tweddling algorithm.
+
+I try different coefficiets (from 0.5 to 0.1) for tuning parameters (line 15-16 in PID.cpp), more stability in convergence was achived with 0.1. Also I try different number of steps (lines 21-22 in PID.cpp) for error evaluating and the best result was achived with 1100 steps in sum that is near the lenth of one lap.
+
+Final parameters are P = 0.107, I = 0.001, D = 2.421.
+
+Here is [video](./result.mp4) control with these parameters.
 
 ## Dependencies
 

@@ -75,7 +75,7 @@ void PID::UpdateError(double cte)
 
 double PID::TotalError()
 {
-  return -Kp * p_err - Ki * i_err - Kd * d_err; // TODO: Add your total error calc here!
+  return -Kp * p_err - Ki * i_err - Kd * d_err;
 }
 
 void PID::AddToParameterAtIndex(int index, double amount)
